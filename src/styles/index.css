@@ -1,11 +1,37 @@
-/* 
+#divPadre{height: auto;
+    border: 2px solid red;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    flex-direction: column;
 
-    You can write your own styles here...
-    
-    
-    ...Or you can use the import command to include 
-    other sylesheets into your bunde as well, e.j:
-    
-    import 'relative/path/to/stylesheet.scss';
+}
 
-*/
+#divHijo{
+   height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 480px;
+    border: 2px solid gray;
+}
+
+
+
+#inputPrincipal{
+  border-bottom: 1px solid gainsboro;  
+  
+    height: 40px;
+    width: 470px;
+}
+
+#nuevoLi{
+    margin: 0;
+    width: 460px;
+    display:flex;
+    align-items: start;
+    justify-content: space-around;
+    height: 30px;
+    border: 1px solid gainsboro;
+}
