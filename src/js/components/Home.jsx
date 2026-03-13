@@ -23,7 +23,9 @@ let nuevoValor= event.target.value;
   
     }
   };
-  
+
+
+
 
   const eliminar=(index)=>{
 	 setLista(lista.filter((item,i)=> i !== index));
@@ -32,16 +34,18 @@ let nuevoValor= event.target.value;
 
 	return (
 		<div id="divPadre" className="text-center">
-            <h1>todos</h1>
+            <h1 id="titulo">todos</h1>
 
-  <div id="divHijo" className="mb-3">
+  <div id="divHijo">
    
-    <input id="inputPrincipal" type="text" className="form-control" aria-describedby="emailHelp" onKeyDown={handleKeyDown} onChange={(e)=>{setText(e.target.value)}} value={text}/>
+    <input id="inputPrincipal" type="text" className="form-control" aria-describedby="emailHelp" onKeyDown={handleKeyDown} onChange={(e)=>{setText(e.target.value)}} value={text} placeholder="escribe el texto aqui"/>
 
 	<ul id="lista">{lista.map((item,index) =>(
-	<li id="nuevoLi" key={index}>{item}<button onClick={() => eliminar(index)} >xs</button></li>
+	<li id="nuevoLi" key={index}>{item}<span onClick={() => eliminar(index)} >x</span></li>
 	))}</ul>
+	<p id="contador">{lista.length}:Item left</p>
 </div>
+
  
 
 		
