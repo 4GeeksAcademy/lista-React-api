@@ -53,7 +53,6 @@ body{
 #inputPrincipal::placeholder {
     color: rgb(121, 119, 119);
     font-size: 24px;}
-
 #nuevoLi{
       background-color: white;
 padding-right: 15px;
@@ -66,7 +65,6 @@ padding-left: 40px;
     border: 1px solid gainsboro;
     color: rgb(121, 119, 119);
  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
- font-weight: 200;
     font-size: 24px;
     
 }
@@ -88,5 +86,4 @@ padding-left: 40px;
 color: antiquewhite;
   font-family: 'Roboto', sans-serif;
     font-size: 80px;
-    font-weight: 200;
 }

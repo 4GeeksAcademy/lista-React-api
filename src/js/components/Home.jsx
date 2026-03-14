@@ -17,8 +17,8 @@ console.log(text,lista);
    
 let nuevoValor= event.target.value;
     
-    if (event.key === 'Enter') {
-		   setLista([...lista, nuevoValor]);
+    if (event.key === 'Enter' && nuevoValor !== "") {
+		   setLista(lista.concat(nuevoValor));
 		   setText("");
   
     }
@@ -43,7 +43,7 @@ let nuevoValor= event.target.value;
 	<ul id="lista">{lista.map((item,index) =>(
 	<li id="nuevoLi" key={index}>{item}<span onClick={() => eliminar(index)} >x</span></li>
 	))}</ul>
-	<p id="contador">{lista.length}:Item left</p>
+	<p id="contador">{lista.length} item left</p>
 </div>
 
  
