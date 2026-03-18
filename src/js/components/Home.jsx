@@ -1,4 +1,4 @@
-import React,{useEstate, useState} from "react";
+import React,{useEffect, useState} from "react";
 
 //include images into your bundle
 import rigoImage from "../../img/rigo-baby.jpg";
@@ -9,28 +9,78 @@ import rigoImage from "../../img/rigo-baby.jpg";
 
 const Home = () => {
 
+
+
+
 const [text,setText]=useState("");
 const [lista,setLista]=useState([]);
-console.log(text,lista);
+//const[informacion,SetInformacion]=useState([])
 
+
+
+  useEffect(()=>{
+
+informacion()
+
+},[])
+
+function informacion(){
+	fetch("https://playground.4geeks.com/todo/users/alexisrrh", {
+		method: "GET"})
+		.then((response) => response.json())
+		.then((data)=> {		
+			console.log("DATA COMPLETA:", data)
+			console.log("TODOS:", data.todos)
+			setLista(data.todos)})
+		.catch((error)=> console.log(error)) }
+ 
+
+	
+  function crearTarea (label){
+	fetch("https://playground.4geeks.com/todo/todos/alexisrrh", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({
+			label: label,
+			is_done: false
+		})})
+		.then((response) => response.json())
+		.then((data)=> {console.log("tarea creada",data)
+	informacion()})
+		
+		.catch((error)=> console.log(error))
+  }
+function borrar(id){
+	fetch(`https://playground.4geeks.com/todo/todos/${id}`, {
+		method: "DELETE"
+	})
+	.then((response) => {
+		 console.log("status:", response.status);
+		   console.log("ok:", response.ok);
+
+		if(response.ok){
+	setLista(lista.filter(item => item.id !== id))
+		}
+		else{
+			console.log("error al borrar")
+		}
+	})
+	.catch((error)=> console.log(error))
+}
   const handleKeyDown = (event) => {
-   
-let nuevoValor= event.target.value;
-    
-    if (event.key === 'Enter' && nuevoValor !== "") {
-		   setLista(lista.concat(nuevoValor));
+
+	console.log("tecla:", event.key, "texto:", text);
+    if (event.key === 'Enter'  && text.trim() !== "") {
+    crearTarea(text);
 		   setText("");
   
     }
-  };
+}
+ 
+  
 
-
-
-
-  const eliminar=(index)=>{
-	 setLista(lista.filter((item,i)=> i !== index));
-
-  }
 
 	return (
 		<div id="divPadre" className="text-center">
@@ -41,12 +91,11 @@ let nuevoValor= event.target.value;
     <input id="inputPrincipal" type="text" className="form-control" aria-describedby="emailHelp" onKeyDown={handleKeyDown} onChange={(e)=>{setText(e.target.value)}} value={text} placeholder="escribe el texto aqui"/>
 
 	<ul id="lista">{lista.map((item,index) =>(
-	<li id="nuevoLi" key={index}>{item}<span onClick={() => eliminar(index)} >x</span></li>
+	<li id="nuevoLi" key={item.id}>{item.label}<span onClick={() => borrar(item.id)} >x</span></li>
 	))}</ul>
 	<p id="contador">{lista.length} item left</p>
 </div>
 
- 
 
 		
 		</div>
