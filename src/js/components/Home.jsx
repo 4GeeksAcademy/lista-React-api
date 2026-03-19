@@ -14,7 +14,7 @@ const Home = () => {
 
 const [text,setText]=useState("");
 const [lista,setLista]=useState([]);
-//const[informacion,SetInformacion]=useState([])
+
 
 
 
@@ -24,15 +24,14 @@ informacion()
 
 },[])
 
+
 function informacion(){
 	fetch("https://playground.4geeks.com/todo/users/alexisrrh", {
 		method: "GET"})
 		.then((response) => response.json())
-		.then((data)=> {		
-			console.log("DATA COMPLETA:", data)
-			console.log("TODOS:", data.todos)
-			setLista(data.todos)})
-		.catch((error)=> console.log(error)) }
+		.then((data)=> 	setLista(data.todos))
+		.catch((error)=> console.log(error))
+	 }
  
 
 	
@@ -71,7 +70,6 @@ function borrar(id){
 }
   const handleKeyDown = (event) => {
 
-	console.log("tecla:", event.key, "texto:", text);
     if (event.key === 'Enter'  && text.trim() !== "") {
     crearTarea(text);
 		   setText("");
