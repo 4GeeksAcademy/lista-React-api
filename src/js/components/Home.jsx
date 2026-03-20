@@ -24,13 +24,16 @@ informacion()
 
 },[])
 
+	 
+ 
 
 function informacion(){
 	fetch("https://playground.4geeks.com/todo/users/alexisrrh", {
 		method: "GET"})
 		.then((response) => response.json())
-		.then((data)=> 	setLista(data.todos))
+		.then((data)=>	setLista(data.todos))
 		.catch((error)=> console.log(error))
+
 	 }
  
 
